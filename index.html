@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Eslovenia & Italia · Ago 2026</title>
+<style>
+/* ─── TOKENS ──────────────────────────────────────────────── */
+:root {
+  --ink:         #1a1a1a;
+  --ink-soft:    #555;
+  --ink-ghost:   #999;
+  --rule:        #e8e8e8;
+  --page:        #f6f6f4;
+  --surface:     #fff;
+  --accent:      #2a5c1e;
+  --accent-mid:  #4a8c35;
+  --accent-pale: #edf4ea;
+  --gold:        #b8922a;
+  --gold-pale:   #fdf6e3;
+  --alert-bg:    #fffbf0;
+  --alert-bd:    #d4a017;
+  --tag-bg:      #efefed;
+  --font-d: 'Georgia', serif;
+  --font-b: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --r:  8px;
+  --rl: 12px;
+  --sh: 0 1px 4px rgba(0,0,0,0.07);
+  --shm: 0 4px 20px rgba(0,0,0,0.12);
+  /* safe areas for notched phones */
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+}
+
+/* ─── RESET ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-b);
+  background: var(--page);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+button { cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+img { display: block; max-width: 100%; }
+
+/* ─── APP SHELL ───────────────────────────────────────────── */
+.app { display: flex; flex-direction: column; min-height: 100vh; min-height: -webkit-fill-available; }
+
+/* ─── STICKY HEADER ───────────────────────────────────────── */
+.site-header {
+  background: var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  padding-top: var(--safe-top);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  padding: 0 16px;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+.site-title {
+  font-family: var(--font-d);
+  font-size: 16px;
+  font-weight: normal;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+.site-title small {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  margin-left: 6px;
+  font-family: var(--font-b);
+}
+
+/* ─── DESKTOP NAV (hidden on mobile) ─────────────────────── */
+nav.desk-nav {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+  letter-spacing: .03em;
+}
+.nav-btn:hover  { background: rgba(255,255,255,.12); color:#fff; }
+.nav-btn.active { background: rgba(255,255,255,.2);  color:#fff; }
+
+/* ─── BURGER ──────────────────────────────────────────────── */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+.burger:active { background: rgba(255,255,255,.15); }
+
+/* ─── BOTTOM TAB BAR (mobile primary nav) ────────────────── */
+.tab-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+  padding-bottom: var(--safe-bottom);
+  z-index: 100;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+.tab-bar-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  height: 56px;
+}
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--ink-ghost);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  padding: 6px 4px;
+  transition: color .15s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.tab-btn.active { color: var(--accent); }
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 0 0 2px 2px;
+}
+.tab-icon { font-size: 20px; line-height: 1; }
+
+/* ─── DRAWER (mobile secondary) ──────────────────────────── */
+.drawer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+.drawer.open { display: block; }
+.drawer-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+.drawer-panel {
+  position: absolute;
+  top: 0; right: 0;
+  width: min(280px, 85vw);
+  height: 100%;
+  background: var(--accent);
+  padding: calc(var(--safe-top) + 16px) 0 16px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.drawer-close {
+  background: none; border: none;
+  color: rgba(255,255,255,.7);
+  font-size: 22px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  align-self: flex-end;
+  margin-bottom: 8px;
+}
+.drawer-btn {
+  background: none; border: none;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  padding: 14px 24px;
+  width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  -webkit-tap-highlight-color: transparent;
+}
+.drawer-btn:active { background: rgba(255,255,255,.1); }
+.drawer-btn.active { color: #fff; background: rgba(255,255,255,.12); }
+
+/* ─── MAIN ────────────────────────────────────────────────── */
+main {
+  flex: 1;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 16px 100px; /* bottom room for tab bar */
+}
+
+/* ─── SECTIONS ────────────────────────────────────────────── */
+.section { display: none; }
+.section.active { display: block; }
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.hero {
+  border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 16px;
+  margin-bottom: 28px;
+}
+.hero-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  margin-bottom: 5px;
+}
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.hero-meta {
+  font-size: 13px;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-meta span::before { content: '· '; color: var(--accent-mid); }
+.hero-meta span:first-child::before { content: ''; }
+
+/* ─── SECTION HEADING ─────────────────────────────────────── */
+.sec-title {
+  font-family: var(--font-d);
+  font-size: 24px;
+  font-weight: normal;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.sec-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ─── OVERVIEW TABLE ──────────────────────────────────────── */
+.ov-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: var(--rl);
+  overflow: hidden;
+  box-shadow: var(--sh);
+  margin: 12px 0;
+  font-size: 13px;
+}
+.ov-table th {
+  background: var(--accent);
+  color: #fff;
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.ov-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.ov-table tr:last-child td { border-bottom: none; }
+.ov-table tr:nth-child(even) td { background: #f8f8f6; }
+.ov-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+/* Mobile: hide Plan column header on tiny screens, stack */
+.ov-table .col-plan { min-width: 120px; }
+
+/* ─── INFO BLOCK / ROWS ───────────────────────────────────── */
+.info-block {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--rl);
+  overflow: hidden;
+  margin: 12px 0;
+  box-shadow: var(--sh);
+}
+.info-block-title {
+  padding: 9px 14px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+  background: #f5f5f3;
+}
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.info-row:last-child { border-bottom: none; }
+.info-key {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.info-val { color: var(--ink-soft); font-size: 13.5px; }
+
+/* ─── ALERT ───────────────────────────────────────────────── */
+.alert {
+  background: var(--alert-bg);
+  border-left: 3px solid var(--alert-bd);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #7a5500;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+.alert strong { color: #5a3c00; }
+
+/* ─── DAY CARDS ───────────────────────────────────────────── */
+.day-grid { display: flex; flex-direction: column; gap: 10px; }
+.day-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--rl);
+  overflow: hidden;
+  box-shadow: var(--sh);
+}
+.day-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  /* Make touch target large */
+  min-height: 64px;
+}
+.day-badge {
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.day-info { flex: 1; min-width: 0; }
+.day-date {
+  font-size: 10px;
+  color: var(--ink-ghost);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 2px;
+}
+.day-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.day-loc { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+.day-chevron {
+  color: var(--ink-ghost);
+  font-size: 14px;
+  transition: transform .2s;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+.day-card.open .day-chevron { transform: rotate(180deg); }
+.day-body {
+  display: none;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--rule);
+}
+.day-card.open .day-body { display: block; }
+
+/* ─── TIMELINE ────────────────────────────────────────────── */
+.timeline { display: flex; flex-direction: column; margin-top: 12px; }
+.tl-item {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  position: relative;
+}
+.tl-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 29px;
+  top: 22px;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+.tl-time {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--accent-mid);
+  text-align: right;
+  padding-top: 5px;
+  padding-right: 2px;
+  letter-spacing: .02em;
+  line-height: 1.3;
+}
+.tl-dot {
+  position: absolute;
+  left: 24px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--page);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.tl-content { padding: 3px 0 14px 16px; }
+.tl-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.tl-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; margin-top: 1px; }
+
+/* ─── EXCURSION / GUIDE CARDS ────────────────────────────── */
+.cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--rl);
+  padding: 16px;
+  box-shadow: var(--sh);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: box-shadow .18s;
+}
+.card:active { box-shadow: var(--shm); }
+.card-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  line-height: 1;
+}
+.card-body { flex: 1; min-width: 0; }
+.card-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  margin-bottom: 3px;
+}
+.card-title {
+  font-family: var(--font-d);
+  font-size: 17px;
+  font-weight: normal;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.card-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.tag {
+  background: var(--tag-bg);
+  color: var(--ink-soft);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.tag.green { background: var(--accent-pale); color: var(--accent); }
+.tag.gold  { background: var(--gold-pale);   color: var(--gold); }
+.card-arrow { color: var(--ink-ghost); font-size: 16px; flex-shrink: 0; align-self: center; }
+
+/* ─── ACCOMMODATION ───────────────────────────────────────── */
+.accom-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--rl);
+  overflow: hidden;
+  margin: 12px 0;
+  box-shadow: var(--sh);
+}
+.accom-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.accom-nights {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  margin-bottom: 3px;
+}
+.accom-name {
+  font-family: var(--font-d);
+  font-size: 18px;
+  font-weight: normal;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.accom-addr { font-size: 12.5px; color: var(--ink-soft); }
+
+/* ─── TRANSPORT ───────────────────────────────────────────── */
+.transport-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--rl);
+  overflow: hidden;
+  margin: 12px 0;
+  box-shadow: var(--sh);
+}
+.transport-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--rule);
+  background: #f7f7f5;
+}
+.transport-icon { font-size: 24px; flex-shrink: 0; }
+.transport-route { flex: 1; min-width: 0; }
+.transport-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 2px;
+}
+.transport-cities {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.transport-times { text-align: right; flex-shrink: 0; }
+.transport-depart { font-size: 16px; font-weight: 700; color: var(--accent); }
+.transport-arrive { font-size: 11px; color: var(--ink-ghost); }
+
+/* ─── MODAL ───────────────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 300;
+  align-items: flex-end; /* sheet from bottom on mobile */
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  width: 100%;
+  max-width: 600px;
+  max-height: 92vh;
+  border-radius: var(--rl) var(--rl) 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -4px 40px rgba(0,0,0,.2);
+  /* animate up */
+  animation: slideUp .25s ease-out;
+}
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+/* pill handle */
+.modal::before {
+  content: '';
+  display: block;
+  width: 36px; height: 4px;
+  background: var(--rule);
+  border-radius: 2px;
+  margin: 10px auto 0;
+  flex-shrink: 0;
+}
+.modal-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 18px 14px;
+  position: relative;
+  flex-shrink: 0;
+}
+.modal-eyebrow {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 4px;
+}
+.modal-title {
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: normal;
+  padding-right: 36px;
+  line-height: 1.2;
+}
+.modal-close {
+  position: absolute;
+  top: 12px; right: 14px;
+  background: rgba(255,255,255,.15);
+  border: none;
+  color: #fff;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:active { background: rgba(255,255,255,.28); }
+.modal-body {
+  padding: 16px 18px 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  flex: 1;
+  padding-bottom: calc(24px + var(--safe-bottom));
+}
+.modal-sec {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin: 18px 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+.modal-sec:first-child { margin-top: 0; }
+.modal p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+/* ─── CHECKLIST ───────────────────────────────────────────── */
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 4px 0 10px;
+}
+.checklist li {
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding-left: 22px;
+  position: relative;
+  line-height: 1.5;
+}
+.checklist li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-mid);
+  font-weight: 700;
+  font-size: 12px;
+}
+.checklist.no li::before { content: '✗'; color: #c0392b; }
+
+/* ─── PLACE LIST ──────────────────────────────────────────── */
+.place-list {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--rl);
+  overflow: hidden;
+  box-shadow: var(--sh);
+  margin: 10px 0;
+}
+.place-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.place-item:last-child { border-bottom: none; }
+.place-name { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.place-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+.place-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.place-badge.must     { background: var(--accent-pale); color: var(--accent); }
+.place-badge.food     { background: var(--gold-pale);   color: var(--gold); }
+.place-badge.activity { background: #eef0ff; color: #3a4aaa; }
+
+/* ─── FOOTER ──────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: var(--ink-ghost);
+  border-top: 1px solid var(--rule);
+}
+
+/* ─── DESKTOP OVERRIDES (≥600px) ─────────────────────────── */
+@media (min-width: 600px) {
+  main { padding: 28px 24px 60px; }
+  .tab-bar { display: none !important; }
+  nav.desk-nav { display: flex; }
+  .burger { display: none !important; }
+  .modal { border-radius: var(--rl); max-height: 80vh; }
+  .modal-overlay { align-items: center; padding: 24px 16px; }
+  .modal::before { display: none; }
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); }
+  .card { flex-direction: column; }
+  .card-icon { font-size: 32px; }
+  .info-row { flex-direction: row; gap: 8px; }
+  .info-key { min-width: 120px; flex-shrink: 0; font-size: 11.5px; }
+  .ov-table td, .ov-table th { padding: 10px 14px; }
+}
+
+/* ─── MOBILE ONLY (< 600px) ──────────────────────────────── */
+@media (max-width: 599px) {
+  nav.desk-nav { display: none; }
+  .burger { display: flex; }
+  .tab-bar { display: block; }
+  .hero h1 { font-size: 24px; }
+  .sec-title { font-size: 20px; }
+  /* Overview table: show only Day + Plan on small screens */
+  .ov-table .col-base { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ══ HEADER ══════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-title">Eslovenia & Italia <small>Ago 2026</small></div>
+    <nav class="desk-nav">
+      <button class="nav-btn active" onclick="show('overview',this)">Resumen</button>
+      <button class="nav-btn" onclick="show('itinerario',this)">Itinerario</button>
+      <button class="nav-btn" onclick="show('excursiones',this)">Excursiones</button>
+      <button class="nav-btn" onclick="show('alojamientos',this)">Alojamientos</button>
+      <button class="nav-btn" onclick="show('transportes',this)">Transportes</button>
+      <button class="nav-btn" onclick="show('guias',this)">Guías</button>
+    </nav>
+    <button class="burger" id="burgerBtn" onclick="openDrawer()" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<!-- ══ BOTTOM TAB BAR (mobile) ═════════════════════════════════ -->
+<nav class="tab-bar" id="tabBar">
+  <div class="tab-bar-inner">
+    <button class="tab-btn active" onclick="show('overview',this,'tab')">
+      <span class="tab-icon">🗺</span>Resumen
+    </button>
+    <button class="tab-btn" onclick="show('itinerario',this,'tab')">
+      <span class="tab-icon">📅</span>Días
+    </button>
+    <button class="tab-btn" onclick="show('excursiones',this,'tab')">
+      <span class="tab-icon">🎟</span>Tours
+    </button>
+    <button class="tab-btn" onclick="show('alojamientos',this,'tab')">
+      <span class="tab-icon">🏨</span>Hoteles
+    </button>
+    <button class="tab-btn" onclick="show('transportes',this,'tab')">
+      <span class="tab-icon">✈️</span>Viajes
+    </button>
+    <button class="tab-btn" onclick="show('guias',this,'tab')">
+      <span class="tab-icon">📍</span>Guías
+    </button>
+  </div>
+</nav>
+
+<!-- ══ DRAWER ══════════════════════════════════════════════════ -->
+<div class="drawer" id="drawer">
+  <div class="drawer-overlay" onclick="closeDrawer()"></div>
+  <div class="drawer-panel">
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <button class="drawer-btn active" onclick="show('overview',this,'drawer')">🗺 &nbsp;Resumen</button>
+    <button class="drawer-btn" onclick="show('itinerario',this,'drawer')">📅 &nbsp;Itinerario día a día</button>
+    <button class="drawer-btn" onclick="show('excursiones',this,'drawer')">🎟 &nbsp;Excursiones reservadas</button>
+    <button class="drawer-btn" onclick="show('alojamientos',this,'drawer')">🏨 &nbsp;Alojamientos</button>
+    <button class="drawer-btn" onclick="show('transportes',this,'drawer')">✈️ &nbsp;Transportes</button>
+    <button class="drawer-btn" onclick="show('guias',this,'drawer')">📍 &nbsp;Guías de destino</button>
+  </div>
+</div>
+
+<!-- ══ MODAL ════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-eyebrow" id="mEye"></div>
+      <div class="modal-title" id="mTitle"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<!-- ══ MAIN ════════════════════════════════════════════════════ -->
+<main>
+
+<!-- ── RESUMEN ──────────────────────────────────────────────── -->
+<section class="section active" id="overview">
+  <div class="hero">
+    <div class="hero-eyebrow">Diario de viaje</div>
+    <h1>Eslovenia & Italia</h1>
+    <div class="hero-meta">
+      <span>24 – 30 agosto 2026</span>
+      <span>7 días</span>
+      <span>Mateo · Nicolás · Eugenia</span>
+    </div>
+  </div>
+
+  <table class="ov-table">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Fecha</th>
+        <th class="col-base">Base</th>
+        <th class="col-plan">Plan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Lun 24 ago</td><td class="col-base">Bled</td><td>Llegada · Vuelo AMS→LJU · Traslado a Bled</td></tr>
+      <tr><td>2</td><td>Mar 25 ago</td><td class="col-base">Bled</td><td>Lago Bled · Día libre</td></tr>
+      <tr><td>3</td><td>Mié 26 ago</td><td class="col-base">Ljubljana</td><td>Vintgar Gorge → Traslado a Ljubljana</td></tr>
+      <tr><td>4</td><td>Jue 27 ago</td><td class="col-base">Ljubljana</td><td>Postojna Cave + Predjama Castle</td></tr>
+      <tr><td>5</td><td>Vie 28 ago</td><td class="col-base">Verona</td><td>Ljubljana → Trieste (bus) → Verona (tren)</td></tr>
+      <tr><td>6</td><td>Sáb 29 ago</td><td class="col-base">Verona</td><td>Día libre en Verona</td></tr>
+      <tr><td>7</td><td>Dom 30 ago</td><td class="col-base">—</td><td>Verona → Milán → Vuelo AMS (Mateo)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-block" style="margin-top:20px">
+    <div class="info-block-title">Vuelos</div>
+    <div class="info-row">
+      <span class="info-key">Ida</span>
+      <span class="info-val">KLM KL1989 · AMS 10:20 → LJU 12:05 · Lunes 24 ago</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">Vuelta</span>
+      <span class="info-val">KLM KL1620 · LIN 19:50 → AMS 21:40 · Dom 30 ago · Solo Mateo</span>
+    </div>
+  </div>
+  <div class="alert">
+    <strong>Nota:</strong> Nicolás y Eugenia continúan hasta el 6 de septiembre. El vuelo del domingo 30 es solo para Mateo.
+  </div>
+</section>
+
+<!-- ── ITINERARIO ────────────────────────────────────────────── -->
+<section class="section" id="itinerario">
+  <div class="sec-title">Itinerario</div>
+  <div class="sec-sub">Tocá cada día para ver el detalle</div>
+  <div class="day-grid">
+
+    <!-- DÍA 1 -->
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-card-header">
+        <div class="day-badge">Día 1</div>
+        <div class="day-info">
+          <div class="day-date">Lunes 24 de agosto</div>
+          <div class="day-title">Llegada a Eslovenia</div>
+          <div class="day-loc">Amsterdam → Ljubljana → Bled</div>
+        </div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">10:20</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Vuelo KLM KL1989</div><div class="tl-desc">Amsterdam (AMS) → Ljubljana (LJU)</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">12:05</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Ljubljana</div><div class="tl-desc">Traslado a Bled · ~50 km · aprox. 45 min</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">14:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Check-in · Bled Hostel</div><div class="tl-desc">Grajska cesta 22, 4260 Bled · Check-in desde 14:00</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Primera vuelta al lago</div><div class="tl-desc">Ambientación y primera vista al lago y el castillo.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÍA 2 -->
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-card-header">
+        <div class="day-badge">Día 2</div>
+        <div class="day-info">
+          <div class="day-date">Martes 25 de agosto</div>
+          <div class="day-title">Lago Bled</div>
+          <div class="day-loc">Bled</div>
+        </div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">mañana</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Vuelta al lago</div><div class="tl-desc">Caminata de ~6 km. Vistas a la isla y el castillo.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">mediodía</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Kremšnita</div><div class="tl-desc">El postre símbolo de Bled — milhojas de crema. Park Hotel Bled.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Isla de Bled o Castillo</div><div class="tl-desc">Isla en pletna (barca tradicional) o castillo a 700 m del hostel.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">noche</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Bar del hostel</div><div class="tl-desc">Karaoke y bar compartido en el Bled Hostel.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÍA 3 -->
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-card-header">
+        <div class="day-badge">Día 3</div>
+        <div class="day-info">
+          <div class="day-date">Miércoles 26 de agosto</div>
+          <div class="day-title">Vintgar Gorge → Ljubljana</div>
+          <div class="day-loc">Bled → Ljubljana</div>
+        </div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="alert"><strong>Check-out</strong> hasta las 10:00. Llevar el equipaje.</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">08:31</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Shuttle desde Bled Bus Station</div><div class="tl-desc">Bus gratuito hacia Vintgar. Llegar antes de las 08:30.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">08:51</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Parking P1 → e-bus al gorge</div><div class="tl-desc">Cambio al shuttle eléctrico hacia el Visitor Centre.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">09:21</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Entrada ✓ Reservada</div><div class="tl-desc">Tolerancia 20 min. Retirar casco en el Visitor Centre.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">09:21→12:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Trail · 5.7 km · 2-3 hs</div><div class="tl-desc">Gorge sentido único (1.6 km) + King of Triglav Trail de regreso (4.1 km).</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Traslado a Ljubljana</div><div class="tl-desc">~55 km · 1 hora. Check-in ibis Styles desde las 15:00.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÍA 4 -->
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-card-header">
+        <div class="day-badge">Día 4</div>
+        <div class="day-info">
+          <div class="day-date">Jueves 27 de agosto</div>
+          <div class="day-title">Postojna + Predjama</div>
+          <div class="day-loc">Ljubljana → Postojna</div>
+        </div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="alert"><strong>Boarding: 09:45.</strong> Llegar al parque a las 09:30 como mínimo.</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">09:30</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Postojna Cave Park</div><div class="tl-desc">Jamska cesta 28, 6230 Postojna.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">09:45</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Boarding · Cave-train</div><div class="tl-desc">No llegar tarde — el tren no espera.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">10:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Tour · Postojna Cave ✓</div><div class="tl-desc">Reservada. 10°C adentro — llevar abrigo.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">mediodía</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Traslado a Predjama Castle</div><div class="tl-desc">9 km. Transporte propio (no incluido en ticket).</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Predjama Castle ✓</div><div class="tl-desc">09:00–18:30. Último ingreso 18:00. App incluida.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">noche</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Regreso a Ljubljana</div><div class="tl-desc">Dormir ibis Styles Ljubljana Centre.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÍA 5 -->
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-card-header">
+        <div class="day-badge">Día 5</div>
+        <div class="day-info">
+          <div class="day-date">Viernes 28 de agosto</div>
+          <div class="day-title">Ljubljana → Trieste → Verona</div>
+          <div class="day-loc">En tránsito</div>
+        </div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="alert"><strong>Día largo.</strong> Check-out 11:00 · Bus 14:35 · Tren 18:16 · Check-in Verona hasta 22:00.</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">hasta 11:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Check-out ibis Ljubljana</div><div class="tl-desc">Guardar valijas y aprovechar la mañana.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">11:00–14:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Mañana libre en Ljubljana</div><div class="tl-desc">Mercado del río · Plaza Prešeren · Castillo.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">14:20</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegar a la estación de buses</div><div class="tl-desc">Trg Osvobodilne fronte 4 · Puertas 29/30.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">14:35</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">FlixBus · Ruta 907 → Trieste</div><div class="tl-desc">Mateo 20D · Nicolás 20C · Eugenia 20E. Llevar DNI/pasaporte.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">16:10</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Trieste · ~2 hs libres</div><div class="tl-desc">Autostazione Silos · Piazza della Libertà 9.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">18:16</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Tren RV 3446 → Venezia Mestre</div><div class="tl-desc">Trieste Centrale · 2ª clase · Llega Mestre 20:09.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">20:23</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Tren RV 3574 → Verona</div><div class="tl-desc">14 min de transbordo en Mestre · 2ª clase.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">21:38</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Verona Porta Nuova</div><div class="tl-desc">Check-in Arena Suites Verona · Via Gino Trainotti 6/1.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÍA 6 -->
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-card-header">
+        <div class="day-badge">Día 6</div>
+        <div class="day-info">
+          <div class="day-date">Sábado 29 de agosto</div>
+          <div class="day-title">Verona</div>
+          <div class="day-loc">Verona, Italia</div>
+        </div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">mañana</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Arena + Casa de Julieta</div><div class="tl-desc">Ir temprano a la Casa de Julieta — siempre hay cola.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">mediodía</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Almuerzo · Piazza delle Erbe</div><div class="tl-desc">Plaza central histórica sobre el foro romano.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Castelvecchio + Ponte Pietra</div><div class="tl-desc">Fortaleza medieval con puente panorámico sobre el Adigio.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">noche</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Cena con Amarone</div><div class="tl-desc">Risotto all'Amarone o pasta con ragú. El Amarone es de aquí.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÍA 7 -->
+    <div class="day-card" onclick="toggleDay(this)">
+      <div class="day-card-header">
+        <div class="day-badge">Día 7</div>
+        <div class="day-info">
+          <div class="day-date">Domingo 30 de agosto</div>
+          <div class="day-title">Vuelta a Amsterdam</div>
+          <div class="day-loc">Verona → Milán (Mateo)</div>
+        </div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="alert"><strong>Check-out hasta las 10:00.</strong> Vuelo de Mateo: LIN 19:50.</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">hasta 10:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Check-out Arena Suites</div><div class="tl-desc"></div></div></div></div>
+          <div class="tl-item"><div class="tl-time">mañana</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Traslado Verona → Milán</div><div class="tl-desc">~160 km · Tren ~1h 15 min (Verona P.N. → Milano Centrale) · pendiente confirmar.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">19:50</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Vuelo KLM KL1620 · Solo Mateo</div><div class="tl-desc">Milán Linate (LIN) → Amsterdam (AMS) · Llega 21:40.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EXCURSIONES ───────────────────────────────────────────── -->
+<section class="section" id="excursiones">
+  <div class="sec-title">Excursiones</div>
+  <div class="sec-sub">Info práctica de cada actividad reservada</div>
+  <div class="cards-grid">
+    <div class="card" onclick="openModal('vintgar')">
+      <div class="card-icon">🏞</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Miércoles 26 ago · Mañana</div>
+        <div class="card-title">Vintgar Gorge</div>
+        <div class="card-desc">Desfiladero de 1.6 km tallado por el río Radovna. Trail total 5.7 km con regreso por King of Triglav Trail.</div>
+        <div class="card-tags">
+          <span class="tag green">Reservada ✓</span>
+          <span class="tag">Entrada 09:21</span>
+          <span class="tag">2-3 horas</span>
+        </div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card" onclick="openModal('postojna')">
+      <div class="card-icon">🗿</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Jueves 27 ago · Todo el día</div>
+        <div class="card-title">Postojna Cave + Predjama Castle</div>
+        <div class="card-desc">La cueva más visitada de Europa con cave-train, más el castillo medieval más grande construido dentro de una roca.</div>
+        <div class="card-tags">
+          <span class="tag green">Reservada ✓</span>
+          <span class="tag">Tour 10:00</span>
+          <span class="tag">Boarding 09:45</span>
+        </div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ALOJAMIENTOS ──────────────────────────────────────────── -->
+<section class="section" id="alojamientos">
+  <div class="sec-title">Alojamientos</div>
+  <div class="sec-sub">Tres bases confirmadas</div>
+
+  <div class="accom-card">
+    <div class="accom-header">
+      <div class="accom-nights">24 – 26 ago · 2 noches</div>
+      <div class="accom-name">Bled Hostel</div>
+      <div class="accom-addr">Grajska cesta 22, 4260 Bled, Eslovenia</div>
+    </div>
+    <div class="info-row"><span class="info-key">Check-in</span><span class="info-val">14:00 – 00:00</span></div>
+    <div class="info-row"><span class="info-key">Check-out</span><span class="info-val">Hasta 10:00</span></div>
+    <div class="info-row"><span class="info-key">Ubicación</span><span class="info-val">6 min a la playa · 700 m del castillo · 3.2 km de la isla</span></div>
+    <div class="info-row"><span class="info-key">Servicios</span><span class="info-val">Bar · Karaoke · Cocina compartida · WiFi · Jardín</span></div>
+    <div class="info-row"><span class="info-key">Score</span><span class="info-val">Ubicación 9.6/10 (870 reseñas)</span></div>
+  </div>
+
+  <div class="accom-card">
+    <div class="accom-header">
+      <div class="accom-nights">26 – 28 ago · 2 noches</div>
+      <div class="accom-name">ibis Styles Ljubljana Centre</div>
+      <div class="accom-addr">Miklošičeva 9, 1000 Ljubljana, Eslovenia</div>
+    </div>
+    <div class="info-row"><span class="info-key">Check-in</span><span class="info-val">Desde 15:00 · Presentar ID + tarjeta</span></div>
+    <div class="info-row"><span class="info-key">Check-out</span><span class="info-val">Hasta 11:00</span></div>
+    <div class="info-row"><span class="info-key">Ubicación</span><span class="info-val">500 m de Plaza Prešeren · 600 m estación de tren</span></div>
+    <div class="info-row"><span class="info-key">Servicios</span><span class="info-val">Rooftop con vistas al castillo · Bar · Desayuno · WiFi</span></div>
+    <div class="info-row"><span class="info-key">Score</span><span class="info-val">Ubicación 9.3/10 (4.030 reseñas)</span></div>
+  </div>
+
+  <div class="accom-card">
+    <div class="accom-header">
+      <div class="accom-nights">28 – 30 ago · 2 noches</div>
+      <div class="accom-name">Arena Suites Verona ⭐⭐⭐</div>
+      <div class="accom-addr">Via Gino Trainotti 6/1, 37122 Verona, Italia</div>
+    </div>
+    <div class="info-row"><span class="info-key">Check-in</span><span class="info-val">15:00 – 22:00 · Avisar hora (llegamos ~21:38)</span></div>
+    <div class="info-row"><span class="info-key">Check-out</span><span class="info-val">06:00 – 10:00</span></div>
+    <div class="info-row"><span class="info-key">Reserva</span><span class="info-val">Confirmada vía Booking.com</span></div>
+  </div>
+</section>
+
+<!-- ── TRANSPORTES ───────────────────────────────────────────── -->
+<section class="section" id="transportes">
+  <div class="sec-title">Transportes</div>
+  <div class="sec-sub">Todos los traslados del viaje</div>
+
+  <div class="transport-card">
+    <div class="transport-head">
+      <div class="transport-icon">✈️</div>
+      <div class="transport-route">
+        <div class="transport-label">Vuelo de ida · Lun 24 ago</div>
+        <div class="transport-cities">Amsterdam → Ljubljana</div>
+      </div>
+      <div class="transport-times">
+        <div class="transport-depart">10:20</div>
+        <div class="transport-arrive">llega 12:05</div>
+      </div>
+    </div>
+    <div class="info-row"><span class="info-key">Vuelo</span><span class="info-val">KLM KL1989 · Economy</span></div>
+    <div class="info-row"><span class="info-key">Ruta</span><span class="info-val">Amsterdam Schiphol (AMS) → Ljubljana Jože Pučnik (LJU)</span></div>
+    <div class="info-row"><span class="info-key">Pasajeros</span><span class="info-val">Mateo · Nicolás · Eugenia</span></div>
+  </div>
+
+  <div class="transport-card">
+    <div class="transport-head">
+      <div class="transport-icon">🚌</div>
+      <div class="transport-route">
+        <div class="transport-label">FlixBus · Vie 28 ago</div>
+        <div class="transport-cities">Ljubljana → Trieste</div>
+      </div>
+      <div class="transport-times">
+        <div class="transport-depart">14:35</div>
+        <div class="transport-arrive">llega 16:10</div>
+      </div>
+    </div>
+    <div class="info-row"><span class="info-key">Operador</span><span class="info-val">FlixBus · Ruta 907 · Dirección Padua</span></div>
+    <div class="info-row"><span class="info-key">Salida</span><span class="info-val">Estación de Autobuses · Trg Osvobodilne fronte 4 · Puertas 29/30</span></div>
+    <div class="info-row"><span class="info-key">Llegada</span><span class="info-val">Autostazione Silos · Piazza della Libertà 9, Trieste</span></div>
+    <div class="info-row"><span class="info-key">Asientos</span><span class="info-val">Mateo 20D · Nicolás 20C · Eugenia 20E</span></div>
+    <div class="info-row"><span class="info-key">Equipaje</span><span class="info-val">3× bolso (7 kg, 42×30×18 cm) + 3× valija (20 kg, 80×50×30 cm)</span></div>
+    <div class="info-row"><span class="info-key">Importante</span><span class="info-val">Llegar 15 min antes. DNI/pasaporte obligatorio (frontera Italia).</span></div>
+  </div>
+
+  <div class="transport-card">
+    <div class="transport-head">
+      <div class="transport-icon">🚆</div>
+      <div class="transport-route">
+        <div class="transport-label">Trenitalia · Vie 28 ago</div>
+        <div class="transport-cities">Trieste → Verona</div>
+      </div>
+      <div class="transport-times">
+        <div class="transport-depart">18:16</div>
+        <div class="transport-arrive">llega 21:38</div>
+      </div>
+    </div>
+    <div class="info-row"><span class="info-key">Tramo 1</span><span class="info-val">Trieste Centrale 18:16 → Venezia Mestre 20:09 · RV 3446 · 2ª clase</span></div>
+    <div class="info-row"><span class="info-key">Transbordo</span><span class="info-val">Venezia Mestre · 14 min (20:09 → 20:23)</span></div>
+    <div class="info-row"><span class="info-key">Tramo 2</span><span class="info-val">Venezia Mestre 20:23 → Verona Porta Nuova 21:38 · RV 3574 · 2ª clase</span></div>
+    <div class="info-row"><span class="info-key">Pasajeros</span><span class="info-val">Mateo · Nicolás · Eugenia</span></div>
+    <div class="info-row"><span class="info-key">Nota</span><span class="info-val">Validar ticket con la tarjeta de crédito usada al comprar antes de abordar.</span></div>
+  </div>
+
+  <div class="transport-card">
+    <div class="transport-head">
+      <div class="transport-icon">✈️</div>
+      <div class="transport-route">
+        <div class="transport-label">Vuelo vuelta · Dom 30 ago · Solo Mateo</div>
+        <div class="transport-cities">Milán → Amsterdam</div>
+      </div>
+      <div class="transport-times">
+        <div class="transport-depart">19:50</div>
+        <div class="transport-arrive">llega 21:40</div>
+      </div>
+    </div>
+    <div class="info-row"><span class="info-key">Vuelo</span><span class="info-val">KLM KL1620 · Economy · Boeing 737-800</span></div>
+    <div class="info-row"><span class="info-key">Ruta</span><span class="info-val">Milán Linate (LIN) → Amsterdam Schiphol (AMS)</span></div>
+    <div class="info-row"><span class="info-key">Traslado</span><span class="info-val">Verona → Milán Linate: pendiente confirmar. Tren ~1h 15 min + bus al aeropuerto ~30 min.</span></div>
+  </div>
+</section>
+
+<!-- ── GUÍAS ─────────────────────────────────────────────────── -->
+<section class="section" id="guias">
+  <div class="sec-title">Guías de destino</div>
+  <div class="sec-sub">Qué ver, comer y hacer en cada lugar</div>
+  <div class="cards-grid">
+    <div class="card" onclick="openModal('bled')">
+      <div class="card-icon">🏔</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Días 1 y 2</div>
+        <div class="card-title">Bled</div>
+        <div class="card-desc">Lago glacial, isla con iglesia y castillo medieval sobre el acantilado.</div>
+        <div class="card-tags"><span class="tag green">2 noches</span><span class="tag">Eslovenia</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card" onclick="openModal('ljubljana')">
+      <div class="card-icon">🏰</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Días 3 y 4</div>
+        <div class="card-title">Ljubljana</div>
+        <div class="card-desc">Capital eslovena compacta con castillo, río y mercado central.</div>
+        <div class="card-tags"><span class="tag green">2 noches</span><span class="tag">Eslovenia</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card" onclick="openModal('trieste')">
+      <div class="card-icon">⚓️</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Día 5 · Parada ~2 horas</div>
+        <div class="card-title">Trieste</div>
+        <div class="card-desc">Ciudad austrohúngara sobre el Adriático. Café histórico y plaza sobre el mar.</div>
+        <div class="card-tags"><span class="tag">2 horas</span><span class="tag">Italia</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card" onclick="openModal('verona')">
+      <div class="card-icon">🏛</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Días 5, 6 y 7</div>
+        <div class="card-title">Verona</div>
+        <div class="card-desc">Ciudad Patrimonio UNESCO. Arena romana, Romeo y Julieta, Amarone.</div>
+        <div class="card-tags"><span class="tag green">2 noches</span><span class="tag">Italia</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>Eslovenia & Italia · Agosto 2026 · Mateo · Nicolás · Eugenia</footer>
+</div>
+
+<script>
+/* ── MODAL DATA ──────────────────────────────────────────────── */
+const M = {
+  vintgar: {
+    eye: 'Excursión · Miércoles 26 de agosto',
+    title: 'Vintgar Gorge',
+    body: `
+      <div class="modal-sec">Horarios y acceso</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Entrada reservada</span><span class="info-val">09:21 hs · Tolerancia 20 min</span></div>
+        <div class="info-row"><span class="info-key">Apertura</span><span class="info-val">08:00 – 16:00 (18 ago – 20 sep)</span></div>
+        <div class="info-row"><span class="info-key">Desde Bled</span><span class="info-val">Bus Station 08:31 → P1 08:51 → Entrada 09:21</span></div>
+        <div class="info-row"><span class="info-key">Shuttle</span><span class="info-val">Gratis desde Bled Bus Station c/15 min → P1, luego e-bus c/7 min al Visitor Centre</span></div>
+        <div class="info-row"><span class="info-key">A pie</span><span class="info-val">~4 km desde el centro de Bled con señalización peatonal</span></div>
+      </div>
+      <div class="modal-sec">El trail</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Total</span><span class="info-val">5.7 km · 115 m desnivel · 2-3 horas · Medio día</span></div>
+        <div class="info-row"><span class="info-key">Sentido</span><span class="info-val">Un solo sentido — no se puede volver por el mismo camino</span></div>
+        <div class="info-row"><span class="info-key">Gorge</span><span class="info-val">Visitor Centre → Šum Waterfall: 1.6 km · ~40-45 min</span></div>
+        <div class="info-row"><span class="info-key">Regreso</span><span class="info-val">King of Triglav Trail: +4.1 km · +2 horas · pasa por Jurček Bistro</span></div>
+        <div class="info-row"><span class="info-key">Audio guía</span><span class="info-val">8 puntos QR en el gorge + 12 en el trail. Solo celular, sin registro.</span></div>
+      </div>
+      <div class="modal-sec">Qué llevar</div>
+      <ul class="checklist">
+        <li>Casco — gratis en el Visitor Centre con forro. <strong>Devolver en Šum Waterfall.</strong></li>
+        <li>Calzado cerrado con suela antideslizante (obligatorio)</li>
+        <li>Capa extra — el gorge es fresco aunque haga calor</li>
+        <li>Agua y efectivo para comida</li>
+      </ul>
+      <ul class="checklist no">
+        <li>Drones — prohibidos</li>
+        <li>Trepar las barandas</li>
+        <li>Mascotas (salvo kennel)</li>
+      </ul>
+      <div class="modal-sec">Comida</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Visitor Centre</span><span class="info-val">Bistro con terraza. Focaccia, hot dog, Bled cream cake, strudel, helado de leche de cabra.</span></div>
+        <div class="info-row"><span class="info-key">Snack Bar (Šum)</span><span class="info-val">Al final del gorge. Jugos, potica, helado de cabra, cerveza local.</span></div>
+        <div class="info-row"><span class="info-key">Jurček Bistro</span><span class="info-val">Ruta de regreso. Cocina local. Abierto 12:00–19:00.</span></div>
+      </div>
+      <div class="modal-sec">Mal tiempo y cambios</div>
+      <p>Tormenta breve → cierre temporal, ticket se extiende. Lluvia prolongada → cierre total con reembolso completo o reprogramación sin costo. Aviso por email.</p>
+      <div class="alert"><strong>Reprogramar:</strong> Solo una vez · hasta 20 min antes · necesitás email de reserva + número de factura.</div>`
+  },
+  postojna: {
+    eye: 'Excursión · Jueves 27 de agosto',
+    title: 'Postojna Cave + Predjama Castle',
+    body: `
+      <div class="alert"><strong>Boarding 09:45.</strong> Llegar al parque a las 09:30 como mínimo. El cave-train no espera.</div>
+      <div class="modal-sec">Postojna Cave · Acceso</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Dirección</span><span class="info-val">Jamska cesta 28, 6230 Postojna</span></div>
+        <div class="info-row"><span class="info-key">Boarding</span><span class="info-val">09:45 hs</span></div>
+        <div class="info-row"><span class="info-key">Tour</span><span class="info-val">10:00 hs</span></div>
+        <div class="info-row"><span class="info-key">Temperatura</span><span class="info-val">10°C constantes — llevar abrigo</span></div>
+        <div class="info-row"><span class="info-key">Audio guía</span><span class="info-val">19 idiomas. Retirar antes de subir al tren.</span></div>
+        <div class="info-row"><span class="info-key">Fotos</span><span class="info-val">Te fotografían al entrar. Si no querés, indicarlo en la máquina validadora.</span></div>
+      </div>
+      <div class="modal-sec">Qué llevar / no llevar</div>
+      <ul class="checklist">
+        <li>Abrigo o capa (10°C adentro)</li>
+        <li>Calzado cómodo cerrado</li>
+        <li>DNI o pasaporte</li>
+      </ul>
+      <ul class="checklist no">
+        <li>Mascotas (hay kennel, sujeto a disponibilidad)</li>
+        <li>Equipaje grande</li>
+        <li>Cochecitos de más de 80 cm</li>
+        <li>Comida o bebida</li>
+      </ul>
+      <div class="modal-sec">¿Qué es Postojna Cave?</div>
+      <p>Una de las cuevas más grandes de Europa. Cave-train único en el mundo que recorre kilómetros antes de la parte caminada. Alberga el olm (<em>Proteus anguinus</em>), anfibio ciego endémico que puede vivir hasta 100 años.</p>
+      <div class="modal-sec">Predjama Castle · Acceso</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Distancia</span><span class="info-val">9 km desde Postojna. Transporte propio (no incluido).</span></div>
+        <div class="info-row"><span class="info-key">Horario</span><span class="info-val">09:00 – 18:30 · Último ingreso 18:00</span></div>
+        <div class="info-row"><span class="info-key">Audio guía</span><span class="info-val">App digital incluida · 19 idiomas · Descargar ANTES de llegar</span></div>
+        <div class="info-row"><span class="info-key">No permitido</span><span class="info-val">Cochecitos y sillas de ruedas dentro del castillo</span></div>
+      </div>
+      <p>Castillo medieval construido dentro de una cueva a 123 m de altura. Récord Guinness como el castillo en cueva más grande del mundo.</p>
+      <div class="modal-sec">Política de cambios</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Hasta 24 hs</span><span class="info-val">Cambio gratis online</span></div>
+        <div class="info-row"><span class="info-key">Hasta 30 min</span><span class="info-val">2 EUR / ticket</span></div>
+        <div class="info-row"><span class="info-key">Menos de 30 min</span><span class="info-val">Solo en boletería: 5 EUR / ticket</span></div>
+        <div class="info-row"><span class="info-key">Contacto</span><span class="info-val">postojnska-jama.eu · +386 5 7000 100</span></div>
+      </div>`
+  },
+  bled: {
+    eye: 'Guía · Días 1 y 2',
+    title: 'Bled',
+    body: `
+      <p>Lago glacial de los Alpes Julianos con una isla en el centro y un castillo medieval sobre el acantilado. Uno de los paisajes más icónicos de Europa Central.</p>
+      <div class="modal-sec">Qué ver</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Vuelta al lago</div><div class="place-desc">~6 km. Sin costo. Vistas permanentes a la isla y el castillo.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Isla de Bled</div><div class="place-desc">Única isla natural de Eslovenia. Iglesia de la Asunción. Llegar en pletna (barca tradicional a remo).</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Castillo de Bled</div><div class="place-desc">A 130 m sobre el lago. 700 m del hostel. Vistas a los Alpes Julianos.</div></div><span class="place-badge activity">Visita</span></div>
+        <div class="place-item"><div><div class="place-name">Playa Grajska</div><div class="place-desc">A 6 min del hostel. Natación en el lago (~20°C en agosto). Entrada gratuita.</div></div><span class="place-badge activity">Actividad</span></div>
+      </div>
+      <div class="modal-sec">Qué comer</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Kremšnita</div><div class="place-desc">El postre símbolo: milhojas de crema y nata. Park Hotel Bled o pastelería del lago.</div></div><span class="place-badge food">Clásico</span></div>
+        <div class="place-item"><div><div class="place-name">Potica</div><div class="place-desc">Tarta enrollada eslovena rellena de nuez o amapola.</div></div><span class="place-badge food">Local</span></div>
+      </div>
+      <div class="modal-sec">Tips</div>
+      <ul class="checklist">
+        <li>Bar y karaoke en el hostel — buena opción de noche en grupo.</li>
+        <li>La luz al atardecer sobre el lago es increíble — aprovechala el día 1.</li>
+        <li>Aquapark Bohinj a 22 km si quieren algo más activo.</li>
+      </ul>`
+  },
+  ljubljana: {
+    eye: 'Guía · Días 3 y 4',
+    title: 'Ljubljana',
+    body: `
+      <p>Capital eslovena compacta atravesada por el río Ljubljanica. Centro histórico medieval, castillo en lo alto y escena gastronómica muy activa. Todo caminable en 20-30 min.</p>
+      <div class="modal-sec">Qué ver</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Castillo de Ljubljana</div><div class="place-desc">Vistas de 360° de la ciudad y los Alpes. Subir a pie (~20 min) o en teleférico desde el centro.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Puente Triple (Tromostovje)</div><div class="place-desc">Tres puentes sobre el Ljubljanica. Diseño de Jože Plečnik. Símbolo de la ciudad.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Plaza Prešeren</div><div class="place-desc">La plaza central. A 500 m del hotel. Punto de partida de cualquier recorrido.</div></div><span class="place-badge activity">Visita</span></div>
+        <div class="place-item"><div><div class="place-name">Mercado Central</div><div class="place-desc">Junto al río. Miel, quesos, productos locales. Mañanas hasta el mediodía.</div></div><span class="place-badge activity">Visita</span></div>
+      </div>
+      <div class="modal-sec">Qué comer</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Štruklji</div><div class="place-desc">Pasta enrollada rellena eslovena, dulce o salada. Plato tradicional.</div></div><span class="place-badge food">Local</span></div>
+        <div class="place-item"><div><div class="place-name">Restaurantes sobre el río</div><div class="place-desc">Paseo del Ljubljanica — buena opción para almorzar o cenar con vista al agua.</div></div><span class="place-badge food">Ambiente</span></div>
+      </div>
+      <div class="modal-sec">Tips</div>
+      <ul class="checklist">
+        <li>El ibis tiene rooftop con vistas al castillo — bueno para un trago antes de cenar.</li>
+        <li>El centro es zona peatonal — sin autos. Ideal para recorrer a pie.</li>
+        <li>Estación de tren a 600 m del hotel — logístico para el día 5 con valijas.</li>
+      </ul>`
+  },
+  trieste: {
+    eye: 'Parada · Viernes 28 ago · ~2 horas',
+    title: 'Trieste',
+    body: `
+      <p>Ciudad portuaria austrohúngara del noreste de Italia. Arquitectura imponente, plaza sobre el mar y la mejor cultura del espresso de Italia. Solo tienen ~2 horas entre el bus y el tren.</p>
+      <div class="modal-sec">Logística</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Llegada</span><span class="info-val">16:10 · Autostazione Silos · Piazza della Libertà 9</span></div>
+        <div class="info-row"><span class="info-key">Tren sale</span><span class="info-val">18:16 desde Trieste Centrale (~10-12 min caminando)</span></div>
+        <div class="info-row"><span class="info-key">Tiempo libre</span><span class="info-val">~1h 45 min · todo a pie desde la estación</span></div>
+      </div>
+      <div class="modal-sec">Qué hacer en 2 horas</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Piazza Unità d'Italia</div><div class="place-desc">La plaza más grande de Italia abierta al mar. A 10 min caminando. Arquitectura austrohúngara imponente.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Caffè San Marco</div><div class="place-desc">El café histórico de Trieste, abierto desde 1914. Estilo vienés, frescos, mármoles. El espresso de Trieste tiene fama propia.</div></div><span class="place-badge food">Clásico</span></div>
+        <div class="place-item"><div><div class="place-name">Canal Grande</div><div class="place-desc">Canal interior con barcos. A minutos de la Piazza Unità. Buen paseo breve.</div></div><span class="place-badge activity">Paseo</span></div>
+      </div>
+      <div class="modal-sec">Tips</div>
+      <ul class="checklist">
+        <li>En Trieste pedir un "nero" para un espresso solo, "capo" para cortado.</li>
+        <li>Trieste Centrale está en el centro — 10 min antes del tren es suficiente.</li>
+        <li>El muelle frente a la Piazza Unità es de los mejores de Italia — vale los 15 min.</li>
+      </ul>`
+  },
+  verona: {
+    eye: 'Guía · Días 5, 6 y 7',
+    title: 'Verona',
+    body: `
+      <p>Ciudad medieval del norte de Italia, Patrimonio UNESCO desde 2000. Centro histórico compacto, todo caminable. Cuna del Amarone, uno de los mejores tintos de Italia.</p>
+      <div class="modal-sec">Imperdibles</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Arena di Verona</div><div class="place-desc">Anfiteatro romano del siglo I, uno de los más grandes del mundo. Plaza Brà. Sede del Festival de Ópera.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Casa de Julieta</div><div class="place-desc">Via Cappello 23. La balconada de Shakespeare. Ir temprano — siempre hay cola.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Piazza delle Erbe</div><div class="place-desc">Plaza central sobre el foro romano. Mercado de día, bares, frescos medievales.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Castelvecchio</div><div class="place-desc">Fortaleza medieval s. XIV sobre el Adigio. Museo + Ponte Scaligero panorámico.</div></div><span class="place-badge activity">Visita</span></div>
+        <div class="place-item"><div><div class="place-name">Ponte Pietra</div><div class="place-desc">Puente romano más antiguo de Verona (s. I a.C.). Vistas al teatro romano y colinas.</div></div><span class="place-badge activity">Paseo</span></div>
+      </div>
+      <div class="modal-sec">Qué comer y beber</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Risotto all'Amarone</div><div class="place-desc">El plato más emblemático de Verona: risotto cocinado con el vino tinto local.</div></div><span class="place-badge food">Clásico</span></div>
+        <div class="place-item"><div><div class="place-name">Pasta con ragú</div><div class="place-desc">Ragú veronés con mezcla de carnes. Distinto al boloñés.</div></div><span class="place-badge food">Local</span></div>
+        <div class="place-item"><div><div class="place-name">Amarone della Valpolicella</div><div class="place-desc">Tinto potente de uva Corvina. En cualquier enoteca del centro.</div></div><span class="place-badge food">Vino</span></div>
+        <div class="place-item"><div><div class="place-name">Pandoro</div><div class="place-desc">El pandoro original es veronés. Buscar en panadería local — más suave que el industrial.</div></div><span class="place-badge food">Local</span></div>
+      </div>
+      <div class="modal-sec">Tips</div>
+      <ul class="checklist">
+        <li>Centro con ZTL — moverse a pie. Todo en radio de 25 min caminando.</li>
+        <li>Restaurantes más honestos a 2-3 cuadras de la Arena — alejarse un poco.</li>
+        <li>La Arena tiene iluminación nocturna espectacular — pasar por Plaza Brà de noche.</li>
+        <li>Para el vino, ir a una enoteca: mejor selección y precio más honesto que en restaurante.</li>
+      </ul>`
+  }
+};
+
+/* ── NAVIGATION ──────────────────────────────────────────────── */
+function show(id, btn, source) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  // Update desktop nav
+  document.querySelectorAll('.desk-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  // Update tab bar
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  // Update drawer
+  document.querySelectorAll('.drawer-btn').forEach(b => b.classList.remove('active'));
+
+  // Mark the clicked button active in its context
+  if (source === 'tab') {
+    btn.classList.add('active');
+    // Also sync drawer
+    const label = btn.textContent.trim().split('\n').pop().trim();
+    document.querySelectorAll('.drawer-btn').forEach(b => {
+      if (b.textContent.includes(label)) b.classList.add('active');
+    });
+  } else if (source === 'drawer') {
+    btn.classList.add('active');
+    closeDrawer();
+    // Sync tab bar
+    const label = btn.textContent.replace(/.*\s/, '').trim();
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.textContent.trim().includes(label)) b.classList.add('active');
+    });
+  } else {
+    // desktop nav
+    btn.classList.add('active');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── DRAWER ──────────────────────────────────────────────────── */
+function openDrawer()  { document.getElementById('drawer').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeDrawer() { document.getElementById('drawer').classList.remove('open'); document.body.style.overflow=''; }
+
+/* ── DAY CARDS ───────────────────────────────────────────────── */
+function toggleDay(card) { card.classList.toggle('open'); }
+
+/* ── MODAL ───────────────────────────────────────────────────── */
+function openModal(id) {
+  const d = M[id]; if (!d) return;
+  document.getElementById('mEye').textContent   = d.eye;
+  document.getElementById('mTitle').textContent = d.title;
+  document.getElementById('mBody').innerHTML    = d.body;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDrawer(); } });
+
+/* ── SWIPE TO CLOSE MODAL (mobile) ──────────────────────────── */
+let touchStartY = 0;
+document.getElementById('modal').addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.getElementById('modal').addEventListener('touchend', e => {
+  const delta = e.changedTouches[0].clientY - touchStartY;
+  if (delta > 80) closeModal(); // swipe down 80px to dismiss
+}, { passive: true });
+</script>
+</body>
+</html>
