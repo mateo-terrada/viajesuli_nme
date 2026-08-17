@@ -7,6 +7,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Eslovenia & Italia · Ago 2026</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2a5c1e">
 <style>
 /* ─── TOKENS ──────────────────────────────────────────────── */
 :root {
@@ -437,13 +441,13 @@ main {
 .timeline { display: flex; flex-direction: column; margin-top: 12px; }
 .tl-item {
   display: grid;
-  grid-template-columns: 58px 1fr;
+  grid-template-columns: 52px 14px 1fr;
   position: relative;
 }
 .tl-item:not(:last-child)::before {
   content: '';
   position: absolute;
-  left: 29px;
+  left: 58px;
   top: 22px;
   bottom: 0;
   width: 1px;
@@ -455,22 +459,26 @@ main {
   color: var(--accent-mid);
   text-align: right;
   padding-top: 5px;
-  padding-right: 2px;
+  padding-right: 6px;
   letter-spacing: .02em;
   line-height: 1.3;
 }
+.tl-dot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7px;
+}
 .tl-dot {
-  position: absolute;
-  left: 24px;
-  top: 7px;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--accent);
   border: 2px solid var(--page);
   box-shadow: 0 0 0 1px var(--accent);
+  flex-shrink: 0;
 }
-.tl-content { padding: 3px 0 14px 16px; }
+.tl-content { padding: 3px 0 14px 10px; }
 .tl-label {
   font-size: 13px;
   font-weight: 600;
@@ -898,12 +906,12 @@ footer {
     </thead>
     <tbody>
       <tr><td>1</td><td>Lun 24 ago</td><td class="col-base">Bled</td><td>Llegada · Vuelo AMS→LJU · Traslado a Bled</td></tr>
-      <tr><td>2</td><td>Mar 25 ago</td><td class="col-base">Bled</td><td>Lago Bled · Día libre</td></tr>
-      <tr><td>3</td><td>Mié 26 ago</td><td class="col-base">Ljubljana</td><td>Vintgar Gorge → Traslado a Ljubljana</td></tr>
+      <tr><td>2</td><td>Mar 25 ago</td><td class="col-base">Bled</td><td>Tour Valle Soča · Triglav NP (08:00) · Día completo</td></tr>
+      <tr><td>3</td><td>Mié 26 ago</td><td class="col-base">Ljubljana</td><td>Vintgar Gorge (09:21) → Traslado a Ljubljana</td></tr>
       <tr><td>4</td><td>Jue 27 ago</td><td class="col-base">Ljubljana</td><td>Postojna Cave + Predjama Castle</td></tr>
       <tr><td>5</td><td>Vie 28 ago</td><td class="col-base">Verona</td><td>Ljubljana → Trieste (bus) → Verona (tren)</td></tr>
       <tr><td>6</td><td>Sáb 29 ago</td><td class="col-base">Verona</td><td>Día libre en Verona</td></tr>
-      <tr><td>7</td><td>Dom 30 ago</td><td class="col-base">—</td><td>Verona → Milán → Vuelo AMS (Mateo)</td></tr>
+      <tr><td>7</td><td>Dom 30 ago</td><td class="col-base">—</td><td>Mateo: Verona→Milán (12:02)→Vuelo AMS · Nico+Euge: Verona→Florencia (14:22)</td></tr>
     </tbody>
   </table>
 
@@ -942,10 +950,10 @@ footer {
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="tl-item"><div class="tl-time">10:20</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Vuelo KLM KL1989</div><div class="tl-desc">Amsterdam (AMS) → Ljubljana (LJU)</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">12:05</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Ljubljana</div><div class="tl-desc">Traslado a Bled · ~50 km · aprox. 45 min</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">14:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Check-in · Bled Hostel</div><div class="tl-desc">Grajska cesta 22, 4260 Bled · Check-in desde 14:00</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Primera vuelta al lago</div><div class="tl-desc">Ambientación y primera vista al lago y el castillo.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">10:20</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Vuelo KLM KL1989</div><div class="tl-desc">Amsterdam (AMS) → Ljubljana (LJU)</div></div></div>
+          <div class="tl-item"><div class="tl-time">12:05</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Llegada a Ljubljana</div><div class="tl-desc">Traslado a Bled · ~50 km · aprox. 45 min</div></div></div>
+          <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Check-in · Bled Hostel</div><div class="tl-desc">Grajska cesta 22, 4260 Bled · Check-in desde 14:00</div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Primera vuelta al lago</div><div class="tl-desc">Ambientación y primera vista al lago y el castillo.</div></div></div>
         </div>
       </div>
     </div>
@@ -956,17 +964,18 @@ footer {
         <div class="day-badge">Día 2</div>
         <div class="day-info">
           <div class="day-date">Martes 25 de agosto</div>
-          <div class="day-title">Lago Bled</div>
-          <div class="day-loc">Bled</div>
+          <div class="day-title">Tour Valle Soča · Triglav NP</div>
+          <div class="day-loc">Bled (día completo)</div>
         </div>
         <div class="day-chevron">▾</div>
       </div>
       <div class="day-body">
+        <div class="alert"><strong>Punto de encuentro 08:00.</strong> Bled Bus Station · Cesta svobode 4 · Oficina Funturist.</div>
         <div class="timeline">
-          <div class="tl-item"><div class="tl-time">mañana</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Vuelta al lago</div><div class="tl-desc">Caminata de ~6 km. Vistas a la isla y el castillo.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">mediodía</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Kremšnita</div><div class="tl-desc">El postre símbolo de Bled — milhojas de crema. Park Hotel Bled.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Isla de Bled o Castillo</div><div class="tl-desc">Isla en pletna (barca tradicional) o castillo a 700 m del hostel.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">noche</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Bar del hostel</div><div class="tl-desc">Karaoke y bar compartido en el Bled Hostel.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Tour Valle Soča ✓ Reservado</div><div class="tl-desc">Nature Adventures · Small group (máx 8) · Guía en inglés · Van incluida · Pickup en el hostel o punto de encuentro.</div></div></div>
+          <div class="tl-item"><div class="tl-time">día</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Triglav National Park · Valle Soča</div><div class="tl-desc">Cascada Peričnik · Reserva Zelenci · Valle del Soča · Paso Vršič · Lago Jasna. Agua color esmeralda — llevar traje de baño y toalla.</div></div></div>
+          <div class="tl-item"><div class="tl-time">opcional</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Rafting Soča (Top Extreme)</div><div class="tl-desc">Opcional, costo adicional de 76 EUR. Confirmar con el operador al inicio del tour.</div></div></div>
+          <div class="tl-item"><div class="tl-time">noche</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Regreso a Bled</div><div class="tl-desc">El tour termina en el punto de encuentro. Bar del hostel para cerrar el día.</div></div></div>
         </div>
       </div>
     </div>
@@ -985,11 +994,11 @@ footer {
       <div class="day-body">
         <div class="alert"><strong>Check-out</strong> hasta las 10:00. Llevar el equipaje.</div>
         <div class="timeline">
-          <div class="tl-item"><div class="tl-time">08:31</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Shuttle desde Bled Bus Station</div><div class="tl-desc">Bus gratuito hacia Vintgar. Llegar antes de las 08:30.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">08:51</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Parking P1 → e-bus al gorge</div><div class="tl-desc">Cambio al shuttle eléctrico hacia el Visitor Centre.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">09:21</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Entrada ✓ Reservada</div><div class="tl-desc">Tolerancia 20 min. Retirar casco en el Visitor Centre.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">09:21→12:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Trail · 5.7 km · 2-3 hs</div><div class="tl-desc">Gorge sentido único (1.6 km) + King of Triglav Trail de regreso (4.1 km).</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Traslado a Ljubljana</div><div class="tl-desc">~55 km · 1 hora. Check-in ibis Styles desde las 15:00.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">08:31</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Shuttle desde Bled Bus Station</div><div class="tl-desc">Bus gratuito hacia Vintgar. Llegar antes de las 08:30.</div></div></div>
+          <div class="tl-item"><div class="tl-time">08:51</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Parking P1 → e-bus al gorge</div><div class="tl-desc">Cambio al shuttle eléctrico hacia el Visitor Centre.</div></div></div>
+          <div class="tl-item"><div class="tl-time">09:21</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Entrada ✓ Reservada</div><div class="tl-desc">Tolerancia 20 min. Retirar casco en el Visitor Centre.</div></div></div>
+          <div class="tl-item"><div class="tl-time">09:21→12:00</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Trail · 5.7 km · 2-3 hs</div><div class="tl-desc">Gorge sentido único (1.6 km) + King of Triglav Trail de regreso (4.1 km).</div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Traslado a Ljubljana</div><div class="tl-desc">~55 km · 1 hora. Check-in ibis Styles desde las 15:00.</div></div></div>
         </div>
       </div>
     </div>
@@ -1008,12 +1017,12 @@ footer {
       <div class="day-body">
         <div class="alert"><strong>Boarding: 09:45.</strong> Llegar al parque a las 09:30 como mínimo.</div>
         <div class="timeline">
-          <div class="tl-item"><div class="tl-time">09:30</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Postojna Cave Park</div><div class="tl-desc">Jamska cesta 28, 6230 Postojna.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">09:45</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Boarding · Cave-train</div><div class="tl-desc">No llegar tarde — el tren no espera.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">10:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Tour · Postojna Cave ✓</div><div class="tl-desc">Reservada. 10°C adentro — llevar abrigo.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">mediodía</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Traslado a Predjama Castle</div><div class="tl-desc">9 km. Transporte propio (no incluido en ticket).</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Predjama Castle ✓</div><div class="tl-desc">09:00–18:30. Último ingreso 18:00. App incluida.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">noche</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Regreso a Ljubljana</div><div class="tl-desc">Dormir ibis Styles Ljubljana Centre.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">09:30</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Llegada a Postojna Cave Park</div><div class="tl-desc">Jamska cesta 28, 6230 Postojna.</div></div></div>
+          <div class="tl-item"><div class="tl-time">09:45</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Boarding · Cave-train</div><div class="tl-desc">No llegar tarde — el tren no espera.</div></div></div>
+          <div class="tl-item"><div class="tl-time">10:00</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Tour · Postojna Cave ✓</div><div class="tl-desc">Reservada. 10°C adentro — llevar abrigo.</div></div></div>
+          <div class="tl-item"><div class="tl-time">mediodía</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Traslado a Predjama Castle</div><div class="tl-desc">9 km. Transporte propio (no incluido en ticket).</div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Predjama Castle ✓</div><div class="tl-desc">09:00–18:30. Último ingreso 18:00. App incluida.</div></div></div>
+          <div class="tl-item"><div class="tl-time">noche</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Regreso a Ljubljana</div><div class="tl-desc">Dormir ibis Styles Ljubljana Centre.</div></div></div>
         </div>
       </div>
     </div>
@@ -1032,14 +1041,14 @@ footer {
       <div class="day-body">
         <div class="alert"><strong>Día largo.</strong> Check-out 11:00 · Bus 14:35 · Tren 18:16 · Check-in Verona hasta 22:00.</div>
         <div class="timeline">
-          <div class="tl-item"><div class="tl-time">hasta 11:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Check-out ibis Ljubljana</div><div class="tl-desc">Guardar valijas y aprovechar la mañana.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">11:00–14:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Mañana libre en Ljubljana</div><div class="tl-desc">Mercado del río · Plaza Prešeren · Castillo.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">14:20</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegar a la estación de buses</div><div class="tl-desc">Trg Osvobodilne fronte 4 · Puertas 29/30.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">14:35</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">FlixBus · Ruta 907 → Trieste</div><div class="tl-desc">Mateo 20D · Nicolás 20C · Eugenia 20E. Llevar DNI/pasaporte.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">16:10</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Trieste · ~2 hs libres</div><div class="tl-desc">Autostazione Silos · Piazza della Libertà 9.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">18:16</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Tren RV 3446 → Venezia Mestre</div><div class="tl-desc">Trieste Centrale · 2ª clase · Llega Mestre 20:09.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">20:23</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Tren RV 3574 → Verona</div><div class="tl-desc">14 min de transbordo en Mestre · 2ª clase.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">21:38</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Llegada a Verona Porta Nuova</div><div class="tl-desc">Check-in Arena Suites Verona · Via Gino Trainotti 6/1.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">hasta 11:00</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Check-out ibis Ljubljana</div><div class="tl-desc">Guardar valijas y aprovechar la mañana.</div></div></div>
+          <div class="tl-item"><div class="tl-time">11:00–14:00</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Mañana libre en Ljubljana</div><div class="tl-desc">Mercado del río · Plaza Prešeren · Castillo.</div></div></div>
+          <div class="tl-item"><div class="tl-time">14:20</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Llegar a la estación de buses</div><div class="tl-desc">Trg Osvobodilne fronte 4 · Puertas 29/30.</div></div></div>
+          <div class="tl-item"><div class="tl-time">14:35</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">FlixBus · Ruta 907 → Trieste</div><div class="tl-desc">Mateo 20D · Nicolás 20C · Eugenia 20E. Llevar DNI/pasaporte.</div></div></div>
+          <div class="tl-item"><div class="tl-time">16:10</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Llegada a Trieste · ~2 hs libres</div><div class="tl-desc">Autostazione Silos · Piazza della Libertà 9.</div></div></div>
+          <div class="tl-item"><div class="tl-time">18:16</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Tren RV 3446 → Venezia Mestre</div><div class="tl-desc">Trieste Centrale · 2ª clase · Llega Mestre 20:09.</div></div></div>
+          <div class="tl-item"><div class="tl-time">20:23</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Tren RV 3574 → Verona</div><div class="tl-desc">14 min de transbordo en Mestre · 2ª clase.</div></div></div>
+          <div class="tl-item"><div class="tl-time">21:38</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Llegada a Verona Porta Nuova</div><div class="tl-desc">Check-in Arena Suites Verona · Via Gino Trainotti 6/1.</div></div></div>
         </div>
       </div>
     </div>
@@ -1057,10 +1066,10 @@ footer {
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="tl-item"><div class="tl-time">mañana</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Arena + Casa de Julieta</div><div class="tl-desc">Ir temprano a la Casa de Julieta — siempre hay cola.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">mediodía</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Almuerzo · Piazza delle Erbe</div><div class="tl-desc">Plaza central histórica sobre el foro romano.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">tarde</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Castelvecchio + Ponte Pietra</div><div class="tl-desc">Fortaleza medieval con puente panorámico sobre el Adigio.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">noche</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Cena con Amarone</div><div class="tl-desc">Risotto all'Amarone o pasta con ragú. El Amarone es de aquí.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">mañana</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Arena + Casa de Julieta</div><div class="tl-desc">Ir temprano a la Casa de Julieta — siempre hay cola.</div></div></div>
+          <div class="tl-item"><div class="tl-time">mediodía</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Almuerzo · Piazza delle Erbe</div><div class="tl-desc">Plaza central histórica sobre el foro romano.</div></div></div>
+          <div class="tl-item"><div class="tl-time">tarde</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Castelvecchio + Ponte Pietra</div><div class="tl-desc">Fortaleza medieval con puente panorámico sobre el Adigio.</div></div></div>
+          <div class="tl-item"><div class="tl-time">noche</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Cena con Amarone</div><div class="tl-desc">Risotto all'Amarone o pasta con ragú. El Amarone es de aquí.</div></div></div>
         </div>
       </div>
     </div>
@@ -1077,11 +1086,13 @@ footer {
         <div class="day-chevron">▾</div>
       </div>
       <div class="day-body">
-        <div class="alert"><strong>Check-out hasta las 10:00.</strong> Vuelo de Mateo: LIN 19:50.</div>
+        <div class="alert"><strong>Check-out hasta las 10:00.</strong> Hoy los caminos se separan — Mateo vuela a Amsterdam, Nicolás y Eugenia siguen a Florencia.</div>
         <div class="timeline">
-          <div class="tl-item"><div class="tl-time">hasta 10:00</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Check-out Arena Suites</div><div class="tl-desc"></div></div></div></div>
-          <div class="tl-item"><div class="tl-time">mañana</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Traslado Verona → Milán</div><div class="tl-desc">~160 km · Tren ~1h 15 min (Verona P.N. → Milano Centrale) · pendiente confirmar.</div></div></div></div>
-          <div class="tl-item"><div class="tl-time">19:50</div><div style="position:relative"><div class="tl-dot"></div><div class="tl-content"><div class="tl-label">Vuelo KLM KL1620 · Solo Mateo</div><div class="tl-desc">Milán Linate (LIN) → Amsterdam (AMS) · Llega 21:40.</div></div></div></div>
+          <div class="tl-item"><div class="tl-time">hasta 10:00</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Check-out Arena Suites Verona</div><div class="tl-desc">Todos.</div></div></div>
+          <div class="tl-item"><div class="tl-time">12:02</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Frecciarossa 9724 · Solo Mateo</div><div class="tl-desc">Verona P.N. → Milano Centrale · Llega 13:15 · Coach 8, Seat 6A · PNR: G4WUT5. Puertas cierran 1 min antes.</div></div></div>
+          <div class="tl-item"><div class="tl-time">13:15–17:30</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Mateo libre en Milán</div><div class="tl-desc">Duomo · Galleria Vittorio Emanuele · Aperitivo. Salir hacia Linate a las 17:30 (bus 73, ~30 min).</div></div></div>
+          <div class="tl-item"><div class="tl-time">14:22</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Italo 8959 · Nicolás y Eugenia</div><div class="tl-desc">Verona P.N. → Firenze S.M. · Llega 15:54 · Coach 10, Seats 1 y 2 · Ticket: MFUCRW.</div></div></div>
+          <div class="tl-item"><div class="tl-time">19:50</div><div class="tl-dot-col"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-label">Vuelo KLM KL1620 · Solo Mateo</div><div class="tl-desc">Milán Linate (LIN) → Amsterdam (AMS) · Llega 21:40 · Boeing 737-800.</div></div></div>
         </div>
       </div>
     </div>
@@ -1094,6 +1105,20 @@ footer {
   <div class="sec-title">Excursiones</div>
   <div class="sec-sub">Info práctica de cada actividad reservada</div>
   <div class="cards-grid">
+    <div class="card" onclick="openModal('soca')">
+      <div class="card-icon">🏔</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Martes 25 ago · Día completo</div>
+        <div class="card-title">Valle Soča · Triglav NP</div>
+        <div class="card-desc">Tour small group por el Parque Nacional Triglav. Río esmeralda, cascadas, paso de montaña y opción de rafting.</div>
+        <div class="card-tags">
+          <span class="tag green">Reservado ✓</span>
+          <span class="tag">08:00 hs</span>
+          <span class="tag">Día completo</span>
+        </div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
     <div class="card" onclick="openModal('vintgar')">
       <div class="card-icon">🏞</div>
       <div class="card-body">
@@ -1141,6 +1166,8 @@ footer {
     <div class="info-row"><span class="info-key">Ubicación</span><span class="info-val">6 min a la playa · 700 m del castillo · 3.2 km de la isla</span></div>
     <div class="info-row"><span class="info-key">Servicios</span><span class="info-val">Bar · Karaoke · Cocina compartida · WiFi · Jardín</span></div>
     <div class="info-row"><span class="info-key">Score</span><span class="info-val">Ubicación 9.6/10 (870 reseñas)</span></div>
+    <div class="info-row"><span class="info-key">Teléfono</span><span class="info-val">+386 31 523 056</span></div>
+    <div class="info-row"><span class="info-key">Tipo</span><span class="info-val">3 camas en habitación compartida mixta de 4 camas · a nombre de Nicolás Torchia</span></div>
   </div>
 
   <div class="accom-card">
@@ -1150,10 +1177,12 @@ footer {
       <div class="accom-addr">Miklošičeva 9, 1000 Ljubljana, Eslovenia</div>
     </div>
     <div class="info-row"><span class="info-key">Check-in</span><span class="info-val">Desde 15:00 · Presentar ID + tarjeta</span></div>
-    <div class="info-row"><span class="info-key">Check-out</span><span class="info-val">Hasta 11:00</span></div>
+    <div class="info-row"><span class="info-key">Check-out</span><span class="info-val">Hasta 11:00 · Cancelación gratis hasta 25 ago 23:59</span></div>
     <div class="info-row"><span class="info-key">Ubicación</span><span class="info-val">500 m de Plaza Prešeren · 600 m estación de tren</span></div>
     <div class="info-row"><span class="info-key">Servicios</span><span class="info-val">Rooftop con vistas al castillo · Bar · Desayuno · WiFi</span></div>
     <div class="info-row"><span class="info-key">Score</span><span class="info-val">Ubicación 9.3/10 (4.030 reseñas)</span></div>
+    <div class="info-row"><span class="info-key">Teléfono</span><span class="info-val">+386 31 395 869</span></div>
+    <div class="info-row"><span class="info-key">Tipo</span><span class="info-val">Habitación doble superior + sofá cama · a nombre de Nicolás Torchia</span></div>
   </div>
 
   <div class="accom-card">
@@ -1163,7 +1192,9 @@ footer {
       <div class="accom-addr">Via Gino Trainotti 6/1, 37122 Verona, Italia</div>
     </div>
     <div class="info-row"><span class="info-key">Check-in</span><span class="info-val">15:00 – 22:00 · Avisar hora (llegamos ~21:38)</span></div>
-    <div class="info-row"><span class="info-key">Check-out</span><span class="info-val">06:00 – 10:00</span></div>
+    <div class="info-row"><span class="info-key">Check-out</span><span class="info-val">06:00 – 10:00 · Sin reembolso si se cancela</span></div>
+    <div class="info-row"><span class="info-key">Teléfono</span><span class="info-val">+39 348 273 2007</span></div>
+    <div class="info-row"><span class="info-key">Tipo</span><span class="info-val">Apartamento Deluxe 1 dormitorio · balcón · cocina · lavadora · a nombre de Eugenia Flores Hugon</span></div>
     <div class="info-row"><span class="info-key">Reserva</span><span class="info-val">Confirmada vía Booking.com</span></div>
   </div>
 </section>
@@ -1231,6 +1262,44 @@ footer {
 
   <div class="transport-card">
     <div class="transport-head">
+      <div class="transport-icon">🚄</div>
+      <div class="transport-route">
+        <div class="transport-label">Frecciarossa · Dom 30 ago · Solo Mateo</div>
+        <div class="transport-cities">Verona → Milán</div>
+      </div>
+      <div class="transport-times">
+        <div class="transport-depart">12:02</div>
+        <div class="transport-arrive">llega 13:15</div>
+      </div>
+    </div>
+    <div class="info-row"><span class="info-key">Tren</span><span class="info-val">Frecciarossa 9724 · 2° Standard · Economy</span></div>
+    <div class="info-row"><span class="info-key">Ruta</span><span class="info-val">Verona Porta Nuova → Milano Centrale</span></div>
+    <div class="info-row"><span class="info-key">Asiento</span><span class="info-val">Coach 8 · Seat 6A · PNR: G4WUT5</span></div>
+    <div class="info-row"><span class="info-key">Pasajero</span><span class="info-val">Mateo Terrada</span></div>
+    <div class="info-row"><span class="info-key">Linate</span><span class="info-val">Desde Milano Centrale: bus 73 → ~30 min. Salir a las 17:30 para llegar a las 18:00.</span></div>
+    <div class="info-row"><span class="info-key">Atención</span><span class="info-val">Puertas cierran 1 minuto antes de la salida.</span></div>
+  </div>
+
+  <div class="transport-card">
+    <div class="transport-head">
+      <div class="transport-icon">🚄</div>
+      <div class="transport-route">
+        <div class="transport-label">Italo · Dom 30 ago · Nicolás y Eugenia</div>
+        <div class="transport-cities">Verona → Florencia</div>
+      </div>
+      <div class="transport-times">
+        <div class="transport-depart">14:22</div>
+        <div class="transport-arrive">llega 15:54</div>
+      </div>
+    </div>
+    <div class="info-row"><span class="info-key">Tren</span><span class="info-val">Italo 8959 · Smart · Economy (Young)</span></div>
+    <div class="info-row"><span class="info-key">Ruta</span><span class="info-val">Verona Porta Nuova → Firenze S.M.</span></div>
+    <div class="info-row"><span class="info-key">Asientos</span><span class="info-val">Coach 10 · Nicolás Seat 1 · Eugenia Seat 2 · Ticket: MFUCRW</span></div>
+    <div class="info-row"><span class="info-key">Equipaje</span><span class="info-val">Clase Smart: máximo 75×53×30 cm</span></div>
+  </div>
+
+  <div class="transport-card">
+    <div class="transport-head">
       <div class="transport-icon">✈️</div>
       <div class="transport-route">
         <div class="transport-label">Vuelo vuelta · Dom 30 ago · Solo Mateo</div>
@@ -1243,7 +1312,7 @@ footer {
     </div>
     <div class="info-row"><span class="info-key">Vuelo</span><span class="info-val">KLM KL1620 · Economy · Boeing 737-800</span></div>
     <div class="info-row"><span class="info-key">Ruta</span><span class="info-val">Milán Linate (LIN) → Amsterdam Schiphol (AMS)</span></div>
-    <div class="info-row"><span class="info-key">Traslado</span><span class="info-val">Verona → Milán Linate: pendiente confirmar. Tren ~1h 15 min + bus al aeropuerto ~30 min.</span></div>
+    <div class="info-row"><span class="info-key">Aeropuerto</span><span class="info-val">Llegar a las 17:50. Bus 73 desde Centrale ~30 min. Salir de Centrale a las 17:15.</span></div>
   </div>
 </section>
 
@@ -1292,6 +1361,16 @@ footer {
       </div>
       <div class="card-arrow">›</div>
     </div>
+    <div class="card" onclick="openModal('florencia')">
+      <div class="card-icon">🌸</div>
+      <div class="card-body">
+        <div class="card-eyebrow">Nicolás y Eugenia · desde el 30 ago</div>
+        <div class="card-title">Florencia</div>
+        <div class="card-desc">Capital del Renacimiento. Uffizi, Duomo, Ponte Vecchio y la mejor bistecca del mundo.</div>
+        <div class="card-tags"><span class="tag">Nico + Euge</span><span class="tag">Italia</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
   </div>
 </section>
 
@@ -1302,6 +1381,49 @@ footer {
 <script>
 /* ── MODAL DATA ──────────────────────────────────────────────── */
 const M = {
+  soca: {
+    eye: 'Excursión · Martes 25 de agosto',
+    title: 'Valle Soča · Triglav National Park',
+    body: `
+      <div class="modal-sec">Reserva</div>
+      <div class="info-block">
+        <div class="info-row"><span class="info-key">Operador</span><span class="info-val">Nature Adventures (Viator)</span></div>
+        <div class="info-row"><span class="info-key">Horario</span><span class="info-val">08:00 hs · Día completo</span></div>
+        <div class="info-row"><span class="info-key">Punto encuentro</span><span class="info-val">Cesta svobode 4, 4260 Bled · Bled Bus Station · Oficina Funturist</span></div>
+        <div class="info-row"><span class="info-key">Pasajeros</span><span class="info-val">3 adultos · a nombre de Eugenia Flores</span></div>
+        <div class="info-row"><span class="info-key">Idioma</span><span class="info-val">Inglés · Guía local</span></div>
+        <div class="info-row"><span class="info-key">Grupo</span><span class="info-val">Small group · máximo 8 personas</span></div>
+        <div class="info-row"><span class="info-key">Cancelación</span><span class="info-val">Gratis hasta 08:00 hs del 24 de agosto · viator.com/account/bookings</span></div>
+        <div class="info-row"><span class="info-key">Contacto op.</span><span class="info-val">Nature Adventures · +386 30 358 734</span></div>
+      </div>
+      <div class="modal-sec">Incluye</div>
+      <ul class="checklist">
+        <li>Transporte en van entre los puntos del tour</li>
+        <li>Pickup en el hotel o punto de encuentro más cercano</li>
+        <li>Guía local profesional todo el día</li>
+      </ul>
+      <ul class="checklist no">
+        <li>Rafting opcional: 76 EUR adicionales (Top Extreme Soča)</li>
+        <li>Comida y bebida</li>
+        <li>Propinas</li>
+      </ul>
+      <div class="modal-sec">Qué llevar</div>
+      <ul class="checklist">
+        <li>Traje de baño y toalla — el río Soča es agua turquesa increíble</li>
+        <li>Calzado cómodo con buena suela</li>
+        <li>Ropa de abrigo — el paso Vršič está a 1611 m de altura</li>
+        <li>Protector solar y agua</li>
+      </ul>
+      <div class="modal-sec">Itinerario aproximado</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Cascada Peričnik</div><div class="place-desc">Primera parada. Cascada doble con sendero corto. Se puede caminar detrás de la caída de agua.</div></div><span class="place-badge must">Parada</span></div>
+        <div class="place-item"><div><div class="place-name">Reserva Natural Zelenci</div><div class="place-desc">Nacimiento del río Sava. Laguna de color turquesa-verde entre pinos. Caminata tranquila.</div></div><span class="place-badge must">Parada</span></div>
+        <div class="place-item"><div><div class="place-name">Valle del Soča · Bovec</div><div class="place-desc">El corazón del tour. Río de color esmeralda. Pozas naturales para nadar. Opción de rafting.</div></div><span class="place-badge must">Parada principal</span></div>
+        <div class="place-item"><div><div class="place-name">Paso Vršič</div><div class="place-desc">El paso de montaña más alto de Eslovenia (1611 m). Vistas espectaculares de los Alpes Julianos.</div></div><span class="place-badge activity">Parada</span></div>
+        <div class="place-item"><div><div class="place-name">Lago Jasna</div><div class="place-desc">Lago de montaña cerca de Kranjska Gora. Aguas cristalinas con fondo de cumbres nevadas.</div></div><span class="place-badge activity">Parada</span></div>
+      </div>
+      <div class="alert">Los tiempos son aproximados y pueden variar según tráfico y condiciones del día. El operador confirma el itinerario exacto al inicio del tour.</div>`
+  },
   vintgar: {
     eye: 'Excursión · Miércoles 26 de agosto',
     title: 'Vintgar Gorge',
@@ -1458,6 +1580,35 @@ const M = {
         <li>En Trieste pedir un "nero" para un espresso solo, "capo" para cortado.</li>
         <li>Trieste Centrale está en el centro — 10 min antes del tren es suficiente.</li>
         <li>El muelle frente a la Piazza Unità es de los mejores de Italia — vale los 15 min.</li>
+      </ul>`
+  },
+  florencia: {
+    eye: 'Guía · Nicolás y Eugenia · desde 30 ago',
+    title: 'Florencia',
+    body: `
+      <p>La capital del Renacimiento italiano. Concentración de arte, arquitectura y gastronomía sin igual en el mundo. Centro histórico Patrimonio UNESCO. Todo caminable.</p>
+      <div class="modal-sec">Imperdibles</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Galería Uffizi</div><div class="place-desc">Uno de los museos más importantes del mundo. Botticelli, Leonardo, Michelangelo, Rafael. Reservar online con anticipación — las colas son enormes.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Duomo · Santa Maria del Fiore</div><div class="place-desc">La cúpula de Brunelleschi es una de las obras de ingeniería más ambiciosas de la historia. Subir a la cúpula para vistas panorámicas de la ciudad.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Ponte Vecchio</div><div class="place-desc">El puente medieval más famoso de Italia, lleno de joyerías. El único puente de Florencia que sobrevivió la Segunda Guerra Mundial.</div></div><span class="place-badge must">Imperdible</span></div>
+        <div class="place-item"><div><div class="place-name">Piazzale Michelangelo</div><div class="place-desc">La mejor vista panorámica de Florencia. Subir al atardecer — espectacular. 20 min caminando desde el centro.</div></div><span class="place-badge activity">Paseo</span></div>
+        <div class="place-item"><div><div class="place-name">Palazzo Pitti + Jardín Bóboli</div><div class="place-desc">Palacio renacentista con jardines del siglo XVI. Menos turístico que los Uffizi pero igual de impresionante.</div></div><span class="place-badge activity">Visita</span></div>
+        <div class="place-item"><div><div class="place-name">Barrio Oltrarno</div><div class="place-desc">La otra orilla del Arno. Más auténtico que el centro turístico, con talleres de artesanos, bares locales y ambiente cotidiano.</div></div><span class="place-badge activity">Barrio</span></div>
+      </div>
+      <div class="modal-sec">Qué comer</div>
+      <div class="place-list">
+        <div class="place-item"><div><div class="place-name">Bistecca alla Fiorentina</div><div class="place-desc">El plato emblema de Toscana: bife de lomo alto de raza Chianina, al punto sangrante, sin negociación. Al menos 800g por persona. Tratorias del Oltrarno.</div></div><span class="place-badge food">Clásico</span></div>
+        <div class="place-item"><div><div class="place-name">Lampredotto</div><div class="place-desc">El street food histórico de Florencia: sándwich de tripa cocida en caldo. Los puestos del Mercato Centrale son el lugar indicado.</div></div><span class="place-badge food">Local</span></div>
+        <div class="place-item"><div><div class="place-name">Gelato</div><div class="place-desc">Buscar gelaterías artesanales (sin colores flúo y con poca cantidad en el recipiente). Evitar los conos con montañas de helado cerca del Duomo.</div></div><span class="place-badge food">Local</span></div>
+        <div class="place-item"><div><div class="place-name">Chianti Classico</div><div class="place-desc">El vino tinto de la zona. En cualquier osteria del centro. Pedir "vino della casa" si quieren algo económico y honesto.</div></div><span class="place-badge food">Vino</span></div>
+      </div>
+      <div class="modal-sec">Tips</div>
+      <ul class="checklist">
+        <li>Los Uffizi y el Duomo requieren reserva online con anticipación — no dejar para el día.</li>
+        <li>El Mercato Centrale (mercado cubierto) es una opción excelente para almorzar económico y bien.</li>
+        <li>Alejarse 3-4 cuadras del Duomo para cualquier cosa gastronómica — los precios bajan a la mitad.</li>
+        <li>El centro es ZTL — todo a pie. La ciudad es pequeña y muy caminable.</li>
       </ul>`
   },
   verona: {
